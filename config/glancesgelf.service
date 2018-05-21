@@ -3,7 +3,7 @@ Description=glances
 After=network.target
 
 [Service]
-ExecStart=/usr/local/python3/bin/gelfglance server --gelfserver graylog.ds.lp --glancesport 61208 --source YOURSERVERNAME -t 60
+ExecStart=/usr/local/python3/bin/gelfglance server --gelfserver graylog.example.com --glancesport 61208 --source YOURSERVERNAME -t 60
 User=glances
 Group=glances
 Restart=on-abort

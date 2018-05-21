@@ -34,6 +34,13 @@ useful.
 
 ## Usage
 
+Example: forward [Glances] statistics on server `jove.com` at port 61207 to
+the [Graylog] server `ossage.com` every minute.
+
+```bash
+gelfglance server --gelfserver jove.com --glancesport 61207 --source ossage.com -t 60
+```
+
 Here's the usage for convenience (use `--help`):
 
 ```pony
