@@ -38,6 +38,7 @@ class LogSender(object):
     def send_message(self, message, additional_data, level=syslog.LOG_INFO):
         data = {'short_message': message,
                 'host': self.source,
+                'program': 'glances',
                 'level': level}
         data.update(additional_data)
         logger.debug('sending message to {}:{} -> <{}>'.

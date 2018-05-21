@@ -2,7 +2,7 @@
 
 PROJ_TYPE=	python
 
-PYTHON_BIN_ARGS=	server --gelfserver graylog.ds.lp --glancesport 61207 -c 2 -t 5
+PYTHON_BIN_ARGS=	server --gelfserver graylog.ds.lp --glancesport 61207 -c 1 -t 0
 
 # make build dependencies
 _ :=	$(shell [ ! -d .git ] && git init ; [ ! -d zenbuild ] && \

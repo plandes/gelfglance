@@ -1,4 +1,5 @@
 import logging
+import math
 import json
 from xmlrpc import client
 
@@ -50,7 +51,8 @@ class GlancesClient(object):
             # argument '--fahrenheit' has no affect
             if td['unit'] == 'C':
                 val = 9.0/5.0 * val + 32
-            val = '{0:3g}'.format(val)
+                # round errors
+                val = math.floor(val * 100) / 100
             data[name] = val
 
     def _col(self, gdict, name, data):
