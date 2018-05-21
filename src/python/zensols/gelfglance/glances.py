@@ -18,34 +18,41 @@ class GlancesClient(object):
 
     @property
     def proxy(self):
+        "Return the glances xmlrpc proxy object."
         if not hasattr(self, '_proxy'):
             self._proxy = client.ServerProxy('http://{}:{}'.format(self.host, self.port))
         return self._proxy
 
     @property
     def plugins(self):
+        "Rerturn glances plugins."
         res = self.proxy.getAllPlugins()
         return json.loads(res)
 
     @property
     def sensors(self):
+        "Return sensor data."
         res = self.proxy.getSensors()
         return json.loads(res)
 
     @property
     def cpu(self):
+        "Return CPU data."
         res = self.proxy.getCpu()
         return json.loads(res)
 
     @property
     def system(self):
+        "Return system information (host name, OS data)."
         res = self.proxy.getSystem()
         return json.loads(res)
 
     def format_system(self):
+        "Return a human readable system summary for the message."
         return '{hostname} ({hr_name})'.format(**self.system)
 
     def _col_sensors(self, sensors, data):
+        "Collect sensor info in `data`."
         for td in sensors:
             prefix = '{}_sensor_'.format(self.key_prefix)
             name = prefix + td['label'].replace(' ', '_').lower()
@@ -58,11 +65,13 @@ class GlancesClient(object):
             data[name] = val
 
     def _col(self, gdict, name, data):
+        "Return general data in `gdict` for category `name` in dict `data`."
         for k, v in gdict.items():
             k = '{}_{}_{}'.format(self.key_prefix, name, k)
             data[k] = v
 
     def get(self, plugins=None):
+        "Return data for specifid plugins (defaults to sensors, cpu)."
         if plugins is None:
             plugins = {'sensors', 'cpu'}
         data = {}
@@ -71,7 +80,3 @@ class GlancesClient(object):
         if 'cpu' in plugins:
             self._col(self.cpu, 'cpu', data)
         return data
-
-    def pprint(self, obj):
-        import pprint
-        pprint.PrettyPrinter().pprint(obj)
