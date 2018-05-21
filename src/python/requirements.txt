@@ -1,0 +1,2 @@
+zensols.actioncli==0.2
+gelfclient==0.0.7
