@@ -35,7 +35,7 @@ class ConfAppCommandLine(OneConfPerActionOptionsCli):
                                       ['-r', '--source', True,
                                        {'metavar': 'STRING',
                                         'default': 'glances',
-                                        'help': 'Graylog port (defaults to 12201)'}],
+                                        'help': 'Glances port (defaults to 12201)'}],
                                       ['-c', '--count', False,
                                        {'metavar': 'STRING',
                                         'type': 'int',

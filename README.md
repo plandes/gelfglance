@@ -66,7 +66,7 @@ Options:
   -s STRING, --glancesserver=STRING
                         Glances server port (defaults to localhost)
   -l INTEGER, --glancesport=INTEGER
-                        Graylog port (defaults to 61208)
+                        Glances port (defaults to 61208)
   -r STRING, --source=STRING
                         Graylog port (defaults to 12201)
   -c STRING, --count=STRING
