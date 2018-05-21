@@ -1,2 +1,3 @@
-zensols.actioncli==0.2
-gelfclient==0.0.7
+zensols.actioncli=>0.2
+gelfclient=>0.0.7
+Glances=>2.11.1
