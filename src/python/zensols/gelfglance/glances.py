@@ -11,9 +11,10 @@ class GlancesClient(object):
 
     See https://github.com/nicolargo/glances/wiki/The-Glances-2.x-API-How-to
     """
-    def __init__(self, host='localhost', port=61208):
+    def __init__(self, host='localhost', port=61208, key_prefix='glances'):
         self.host = host
         self.port = port
+        self.key_prefix = key_prefix
 
     @property
     def proxy(self):
@@ -46,7 +47,8 @@ class GlancesClient(object):
 
     def _col_sensors(self, sensors, data):
         for td in sensors:
-            name = 'sensor_' + td['label'].replace(' ', '_').lower()
+            prefix = '{}_sensor_'.format(self.key_prefix)
+            name = prefix + td['label'].replace(' ', '_').lower()
             val = td['value']
             # argument '--fahrenheit' has no affect
             if td['unit'] == 'C':
@@ -57,7 +59,7 @@ class GlancesClient(object):
 
     def _col(self, gdict, name, data):
         for k, v in gdict.items():
-            k = '{}_{}'.format(name, k)
+            k = '{}_{}_{}'.format(self.key_prefix, name, k)
             data[k] = v
 
     def get(self, plugins=None):
