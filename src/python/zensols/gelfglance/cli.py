@@ -53,7 +53,7 @@ class ConfAppCommandLine(OneConfPerActionOptionsCli):
     def config_parser(self):
         super(ConfAppCommandLine, self).config_parser()
         parser = self.parser
-        parser.remove_option('-s')
+        # parser.remove_option('-s')
         parser.add_option('-x', '--short', dest='short',
                           help='short output for list', action='store_true')
 
